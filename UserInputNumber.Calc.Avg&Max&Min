@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+   int userNum = 1;        //Number entered by user
+   int sumNumbers = 0;    //Sum of all the numbers entered by user
+   int allNumbers = 0;   //Amount of numbers entered to divide by sum of all numbers
+   int average = 0;     //Average of all numbers answered
+   int maxNum = 0;        // Maximum number
+   int minNum = 1000;       //Minimum number 
+   int i = 0;        //Iteration
+
+while (userNum != 0) {
+
+    cout << "Enter a number: ";
+    cin >> userNum;
+    cout << userNum << endl;
+    
+
+    if( userNum == 0 && sumNumbers == 0 ) {
+        cout << "No data, so no answers!" << endl;
+        break;
+    }
+
+    else if (userNum < 0 || userNum > 1000 ) {
+        cout << "Number out of range! Start over!" << endl;
+        break;
+    } else {
+        if (userNum > maxNum){
+            maxNum = userNum;
+        }
+        if (userNum < minNum && userNum != 0){
+            minNum = userNum;
+        }
+    }
+    sumNumbers = sumNumbers + userNum;
+    i++; 
+}
+    cout << "Average: " << sumNumbers / (i -1) << endl;
+    cout << "Max: " << maxNum << endl;
+    cout << "Min: " << minNum << endl;
+ 
+   return 0; 
+}
