@@ -1,0 +1,85 @@
+Exercises
+//////////////////////////////////////////////////////////////
+Exercise 6.1
+Write a program that continues to ask the user for a number
+between one and eleven (inclusive) until the total of the numbers
+is greater than 21. Be sure to reject any number that is not between 
+1 and 11 (inclusive). For example:
+"Please pick a number between 1 and 11: 4
+Please pick a number between 1 and 11: 12
+Out of range; rejected
+
+Please pick a number between 1 and 11: -1
+Out of range; rejected
+
+Please pick a number between 1 and 11: 9
+Please pick a number between 1 and 11: 8
+Please pick a number between 1 and 11: 7
+The total is 28"
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main () {
+    int num; 
+    int total = 0;
+    while (total < 22) {
+        cout<<"Please enter a number between 1 and 11: ";
+        cin>>num;
+        cout<<num;
+        cout<<endl;
+        if ((num < 1) || (num > 11)) {
+            cout<<"Out of range; rejected.";
+            cout<<endl;
+        }
+        else {
+            total = total + num;
+        }
+    }
+    cout<<"The total is ";
+    cout<<total<<endl;
+
+return 0;
+}
+
+
+
+//////////////////////////////////////////////////////////////
+Exercise 6.2
+Modify the program in the chapter that produces a square to instead
+produce a triangle of a certain size. The output should look like
+the example below. This is an example of where you are better off spending 
+more time thinking than typing; you only need to change one or two lines in the
+program to get the desired effect:
+
+Enter size: 5
+*
+**
+***
+****
+*****
+
+#include <iostream>
+#include <string>
+using namespace std;
+int main () {
+    int rows, cols, size;
+    cout<<"Enter size: ";
+    cin>>size;
+    cout<<size;
+    cout<<endl;
+    rows = 0;
+    while (rows < size) {
+        cols = 0;
+        while (cols <= rows) {
+            cout<<"*";
+            cols = cols + 1;
+        }
+        rows = rows + 1;
+        cout<<endl;
+    }
+    return 0;
+}
+
+//////////////////////////////////////////////////////////////
