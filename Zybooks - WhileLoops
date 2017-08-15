@@ -1,0 +1,492 @@
+Figure 9.2.2 While loop example
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   const int YEARS_PER_GEN = 20; // Approx. years per generation
+   int userYear = 0;             // User input
+   int consYear = 0;             // Year being considered
+   int numAnc = 0;               // Approx. ancestors in considered year
+   
+   cout << "Enter a past year (neg. for B.C.): ";
+   cin >> userYear;
+   
+   consYear = 2020;
+   numAnc = 2;
+   
+   while (consYear >= userYear) {
+      cout << "Ancestors in " << consYear << ": " << numAnc << endl;
+      
+      numAnc = 2 * numAnc;                 // Each ancestor had two parents
+      consYear = consYear - YEARS_PER_GEN; // Go back 1 generation
+   }
+   
+   return 0;
+}
+///////////////////////////////////////////////////////////////////////////////////////
+Question 1) 
+int x = 0;
+while (x > 0) {
+   cout << x << " ";
+   x = x - 1;
+}
+cout << "Bye";
+Answer: Bye
+
+Question 2)
+int x = 5;
+int y = 18;
+while (y >= x) {
+   cout << y << " ";
+   y = y - x;
+}
+Answer: 18 13 8
+
+
+Question 3)
+(Assume the user always enters 'q'). 
+int z = 0;
+char c = 'y';
+while (c = 'y') {
+   cout << z << " ";
+   cin >> c;
+   z = z + 1;
+}
+Answer: IL (infinite loop)
+
+Question 4)
+int x = 10;
+while (x != 3) {
+   cout << x << " ";
+   x = x / 2;
+}
+Answer: IL
+
+
+///////////////////////////////////////////////////////////////////////////////////////
+"Range of data types example" 9.1 - 9.2
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   const int YEARS_PER_GEN = 20; // Approx. years per generation
+   int userYear = 0; // User input
+   int consYear = 0; // Year being considered
+   long long numAnc = 0;   // Approx. ancestors in considered year
+   
+   cout << "Enter a past year (neg. for B.C.): ";
+   cin >> userYear;
+   
+   consYear = 2020;
+   numAnc = 2;
+   while (consYear >= userYear) {
+      cout << "Ancestors in " << consYear << ": " << numAnc << endl;
+      
+      numAnc = 2 * numAnc; // Each ancestor had two parents
+      consYear = consYear - YEARS_PER_GEN; // Go back 1 generation
+   }
+   
+   return 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////
+1.) Challenge activity 9.1 - 9.2
+Write expression that executes loop while the user enters a
+number greater than or equal to 0. 
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   int userNum = 0;
+
+   userNum = 9;
+   while (userNum >= 0) {  //ENTER CODE HERE
+      cout << "Body" << endl;
+      cin >> userNum;
+   }
+   cout << "Done." << endl;
+
+   return 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////
+2.) Challenge activity 9.1 - 9.2
+"Write a while loop that prints userNum divided by 2 until reaching 1.
+Follow each number by a space. Example output for userNum = 40.
+20 10 5 2 1"
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   int userNum = 0;
+
+   userNum = 40;
+
+ while (userNum > 1) {
+      userNum = (userNum / 2);
+      cin>>userNum;
+      cout << userNum << " ";
+   }
+
+   cout << endl;
+
+   return 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////
+9.3
+While loop example
+
+#include <iostream>
+using namespace std;
+
+// Output GCD of user-input numA and numB
+
+int main() {
+   int numA = 0; // User input
+   int numB = 0; // User input
+   
+   cout << "Enter first positive integer: ";
+   cin  >> numA;
+   
+   cout << "Enter second positive integer: ";
+   cin  >> numB;
+   
+   while (numA != numB) { // Euclid's algorithm
+      if (numB > numA) {
+         numB = numB - numA;
+      }
+      else {
+         numA = numA - numB;
+      }
+   }
+   
+   cout << "GCD is: " << numA << endl;
+   
+   return 0;
+}
+//////////////////////////////////////////////////////////////////////////////////////
+9.3 While loop example
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+/* Program that has a conversation with the user. Uses a switch statement
+   and a random number (sort of) to mix up the program's responses. */
+
+int main() {
+   int randNum0_3 = 0; // Random number 0 to 3
+   string userText;    // User input
+   
+   cout << "Tell me something about yourself. ";
+   cout << "You can type \"Goodbye\" at anytime to quit." << endl << endl;
+   cout << "> ";
+   
+   getline(cin, userText);
+   
+   while (userText != "Goodbye") {
+      randNum0_3 = userText.length() % 4; // "Random" num. %4 ensures 0-3
+      switch (randNum0_3) {
+         case 0:
+            cout << endl << "Please explain further." << endl << endl;
+            cout << "> ";
+            break;
+            
+         case 1:
+            cout << endl << "Why do you say: \"" << userText << "\"?" << endl << endl;
+            cout << "> ";
+            break;
+            
+         case 2:
+            cout << endl << "I don't think that's right." << endl << endl;
+            cout << "> ";
+            break;
+            
+         case 3:
+            cout << endl << "What else can you share?" << endl << endl;
+            cout << "> ";
+            break;
+            
+         default:
+            cout << endl << "Uh-oh, something went wrong. Try again." << endl << endl;
+      }
+      
+      getline(cin, userText);
+   }
+   
+   cout << endl << "It was nice talking with you. Goodbye." << endl;
+   
+   return 0;
+}
+//////////////////////////////////////////////////////////////////////////////////////
+9.3 Bidding example 
+
+#include <iostream>
+#include <cstdlib>   // Enables use of rand()
+using namespace std;
+
+int main() {
+   char keepGoing = '-';
+   int nextBid = 0;
+
+   srand(5);
+   while (keepGoing != 'n') {  //Write expression that continues to bid until the user enters 'n'. 
+      nextBid = nextBid + (rand()%10 + 1);
+      cout << "I'll bid $" << nextBid << "!" << endl;
+      cout << "Continue bidding? (y/n) ";
+      cin >> keepGoing;
+   }
+   cout << endl;
+
+   return 0;
+}
+//////////////////////////////////////////////////////////////////////////////////////
+9.3.2 While loop Challenge
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   int numInsects = 0;
+
+   if (numInsects < 100) {
+   cout << numInsects << " ";
+   while (numInsects < 100) {
+      numInsects = numInsects * 2;
+      if (numInsects <= 100) {
+         cout << numInsects << " ";
+      }
+   }
+} else {
+   cout << "";
+}
+   cout << endl;
+   return 0;
+}
+//////////////////////////////////////////////////////////////////////////////////////
+9.6 Problem, 9.1
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   int userNum = 0;
+   
+   userNum = 8;
+    
+      cout << userNum << " X" << " 0" << " = " << "0";
+      cout << endl;
+      cout << userNum << " X" << " 1" << " = " << userNum;
+      cout << endl;
+      cout << userNum << " X" << " 2" << " = " << userNum * 2;
+      cout << endl;
+      cout << userNum << " X" << " 3" << " = " << userNum * 3;
+      cout << endl;
+      cout << userNum << " X" << " 4" << " = " << userNum * 4;
+      cout << endl;
+      cout << userNum << " X" << " 5" << " = " << userNum * 5;
+      cout << endl;
+      cout << userNum << " X" << " 6" << " = " << userNum * 6;
+      cout << endl;
+      cout << userNum << " X" << " 7" << " = " << userNum * 7;
+      cout << endl;
+      cout << userNum << " X" << " 8" << " = " << userNum * 8;
+      cout << endl;
+      cout << userNum << " X" << " 9" << " = " << userNum * 9;
+      cout << endl;
+      cout << userNum << " X" << " 10" << " = " << userNum * 10;
+      cout << endl;
+      cout << userNum << " X" << " 11" << " = " << userNum * 11;
+      cout << endl;
+      cout << userNum << " X" << " 12" << " = " << userNum * 12;
+      cout << endl;
+   
+   
+   
+   return 0;
+}
+////////////////////////////////////////////////////////////////////
+9.7.1, Problem 9.2
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   int userNum = 0;
+   
+   cout << "Enter an integer: ";
+   cin >> userNum;
+   cout << userNum;
+   cout << endl;
+    
+      cout << userNum << " X" << " 0" << " = " << userNum * 0;
+      cout << endl;
+      cout << userNum << " X" << " 1" << " = " << userNum * 1;
+      cout << endl;
+      cout << userNum << " X" << " 2" << " = " << userNum * 2;
+      cout << endl;
+      cout << userNum << " X" << " 3" << " = " << userNum * 3;
+      cout << endl;
+      cout << userNum << " X" << " 4" << " = " << userNum * 4;
+      cout << endl;
+      cout << userNum << " X" << " 5" << " = " << userNum * 5;
+      cout << endl;
+      cout << userNum << " X" << " 6" << " = " << userNum * 6;
+      cout << endl;
+      cout << userNum << " X" << " 7" << " = " << userNum * 7;
+      cout << endl;
+      cout << userNum << " X" << " 8" << " = " << userNum * 8;
+      cout << endl;
+      cout << userNum << " X" << " 9" << " = " << userNum * 9;
+      cout << endl;
+      cout << userNum << " X" << " 10" << " = " << userNum * 10;
+      cout << endl;
+      cout << userNum << " X" << " 11" << " = " << userNum * 11;
+      cout << endl;
+      cout << userNum << " X" << " 12" << " = " << userNum * 12;
+      cout << endl;
+   
+   
+   
+   return 0;
+}
+
+////////////////////////////////////////////////////////////////////
+9.8.1: Problem 9.3 
+
+#include <iostream> 
+using namespace std;
+
+int main() {
+   int userNum = 0;
+
+cout << "Enter a positive integer: ";
+cin >> userNum;
+cout << userNum;
+cout << endl;
+
+if (userNum % 2 == 0) 
+   while (userNum % 2 == 0) {
+      if (userNum % 2 == 0) {
+            cout<<"Enter a positive integer: ";
+            cin>>userNum;
+            cout<<userNum;
+            cout<<endl;
+         
+         if (userNum % 2 != 0){
+            if (userNum % 2 < 0){
+            cout << "You entered a non-positive number, so exiting." << endl;
+         }
+            else {
+            cout << "You entered an odd number, so exiting." << endl;
+            }
+         }
+      } 
+   }
+return 0;
+}
+
+////////////////////////////////////////////////////////////////////
+9.9.1: Problem 9.4
+
+#include <iostream>
+using namespace std;
+
+int main() {
+   int userNum = 0;
+   
+   if (userNum == 0) {
+      while (userNum == 0) {
+         if (userNum == 0) {
+            userNum = userNum + -3;
+            cout<<"Total" << " + " << "-3"<< " = "<< userNum;
+            cout<<endl;
+            userNum = userNum + -2;
+            cout<<"Total" << " + " << "-2"<<" = "<< userNum;
+            cout<<endl;
+            userNum = userNum + -1;
+            cout<<"Total" << " + " << "-1"<<" = "<< userNum;
+            cout<<endl;
+            userNum = userNum + 0;
+            cout<<"Total" << " + " << "0"<<" = "<< userNum;
+            cout<<endl;
+            userNum = userNum + 1;
+            cout<<"Total" << " + " << "1"<<" = "<< userNum;
+            cout<<endl;
+            userNum = userNum + 2;
+            cout<<"Total" << " + " << "2"<<" = "<< userNum;
+            cout<<endl;
+            userNum = userNum + 3;
+            cout<<"Total" << " + " << "3"<<" = "<< userNum;
+            cout<<endl;
+            userNum = userNum + 4;
+            cout<<"Total" << " + " << "4"<<" = "<< userNum;
+            cout<<endl;
+            userNum = userNum + 5;
+            cout<<"Total" << " + " << "5"<<" = "<< userNum;
+            cout<<endl;
+            userNum = userNum + 6;
+            cout<<"Total" << " + " << "6"<<" = "<< userNum;
+            cout<<endl;
+            userNum = userNum + 7;
+            cout<<"Total" << " + " << "7"<<" = "<< userNum;
+            cout<<endl;
+            userNum = userNum + 8;
+            cout<<"Total" << " + " << "8"<<" = "<< userNum;
+            cout<<endl;
+         }
+      }
+   cout<<"The answer is " << userNum << endl;
+   }
+
+
+   return 0;
+}
+
+////////////////////////////////////////////////////////////////////
+9.10 Problem 9.5
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int x = 0;
+    int y = 0;
+    int count =0;
+
+    cout << "Enter x: ";
+    cin >> x;
+    cout << x;
+    cout << endl;
+    cout << "Enter y, larger than x: ";
+    cin >> y;
+    cout << y;
+    cout << endl;
+
+    if (x > y)
+    {
+        cout << "Please follow the directions next time." << endl; //ENDS PROGRAM
+    }
+
+    if (x < y)
+    {
+        
+        while (x < y)
+        {   
+            count = count + x;
+            cout << "Total + " << x << " = " << count << endl;
+            x = x + 1;
+        }
+        cout << "The answer is " << count << endl;
+    }
+    return 0;
+}
+
+
+////////////////////////////////////////////////////////////////////
